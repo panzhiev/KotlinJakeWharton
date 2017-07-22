@@ -1,4 +1,4 @@
-package com.tim.kotlinjakewharton.model
+package com.tim.kotlinjakewharton.model.data
 
 /**
  * Created by TIM on 22.07.2017.

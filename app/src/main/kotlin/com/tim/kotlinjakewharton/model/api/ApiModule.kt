@@ -1,4 +1,4 @@
-
+package com.tim.kotlinjakewharton.model.api
 
 import com.google.gson.GsonBuilder
 import com.tim.kotlinjakewharton.tools.BASE_URL

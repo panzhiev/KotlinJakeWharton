@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tim.kotlinjakewharton.ui.MainActivity">
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context="com.tim.kotlinjakewharton.view.activities.MainActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="@string/tv_repositories"/>
 
-    <ListView
-        android:id="@+id/lv_names_repos"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_names_repos"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutManager="LinearLayoutManager"
+        tools:listitem="@layout/item_repository">
 
-    </ListView>
-</android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>
