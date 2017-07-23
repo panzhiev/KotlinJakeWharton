@@ -15,22 +15,22 @@ class MainPresenter(var activity: MainActivity) : IPresenter {
 
     private var subscription: Subscription? = null
 
-    override fun getData(){
+    var i: IntRange = 1..10
+
+    override fun getData() {
         subscription = Model().getReposList()
                 .flatMap { list -> Observable.from(list) }        // создаем поток отдельных объектов типа JakeWhartonRepoInfo
                 .map { obj -> obj.name }                          // у каждого объекта типа JakeWhartonRepoInfo берем поле "name"
-                .filter { s -> !s.toUpperCase().startsWith(T)}    // фильтруем все пришедшие данные
+                .filter { s -> !s.toUpperCase().startsWith(T) }    // фильтруем все пришедшие данные
                 .toList()                                         // приводим к листу
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ s -> activity.setData(s as ArrayList<String>)},
+                .subscribe({ s -> activity.setData(s as ArrayList<String>) },
                         { e -> activity.showException(e) })
     }
 
-    override fun unsubscribe() {
-        if (subscription != null) {
-            if (!subscription!!.isUnsubscribed)
-                subscription!!.unsubscribe()
-        }
+    override fun onUnsubscribe() {
+        if (subscription != null && !subscription!!.isUnsubscribed)
+            subscription!!.unsubscribe()
     }
 }

@@ -8,19 +8,18 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiModule {
 
-    val apiInterface: ApiInterface
-        get() {
+    fun apiInterface(): ApiInterface{
+        val gson = GsonBuilder()
+                .setLenient()
+                .create()
 
-            val gson = GsonBuilder()
-                    .setLenient()
-                    .create()
+        val retrofit = Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .baseUrl(BASE_URL)
+                .build()
 
-            val retrofit = Retrofit.Builder()
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                    .baseUrl(BASE_URL)
-                    .build()
+        return retrofit.create(ApiInterface::class.java)
+    }
 
-            return retrofit.create(ApiInterface::class.java)
-        }
 }

@@ -5,5 +5,5 @@ package com.tim.kotlinjakewharton.presenter
  */
 interface IPresenter {
     fun getData()
-    fun unsubscribe()
+    fun onUnsubscribe()
 }

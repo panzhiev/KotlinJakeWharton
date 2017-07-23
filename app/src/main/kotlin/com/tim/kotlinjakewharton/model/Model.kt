@@ -11,6 +11,6 @@ import rx.Observable
 class Model : IModel {
 
     override fun getReposList(): Observable<List<JakeWhartonReposInfo>> {
-        return ApiModule().apiInterface.getListReposJakeWharton(USERNAME)
+        return ApiModule().apiInterface().getListReposJakeWharton(USERNAME)
     }
 }

@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity(), IActivity {
     }
 
     override fun setData(list: ArrayList<String>) {
-        this.rv_names_repos.hasFixedSize()
-        this.rv_names_repos.adapter = RecyclerViewAdapter(this, list)
+        rv_names_repos.hasFixedSize()
+        rv_names_repos.adapter = RecyclerViewAdapter(this, list)
     }
 
     override fun showException(e: Throwable) {
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity(), IActivity {
     }
 
     override fun onStop() {
-        mainPresenter.unsubscribe()
+        mainPresenter.onUnsubscribe()
         super.onStop()
     }
 }
