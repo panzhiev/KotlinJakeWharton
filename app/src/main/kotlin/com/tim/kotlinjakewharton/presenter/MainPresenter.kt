@@ -15,8 +15,6 @@ class MainPresenter(var activity: MainActivity) : IPresenter {
 
     private var subscription: Subscription? = null
 
-    var i: IntRange = 1..10
-
     override fun getData() {
         subscription = Model().getReposList()
                 .flatMap { list -> Observable.from(list) }        // создаем поток отдельных объектов типа JakeWhartonRepoInfo
