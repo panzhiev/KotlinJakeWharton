@@ -17,10 +17,10 @@ class MainPresenter(var activity: MainActivity) : IPresenter {
 
     override fun getData() {
         subscription = Model().getReposList()
-                .flatMap { list -> Observable.from(list) }        // создаем поток отдельных объектов типа JakeWhartonRepoInfo
-                .map { obj -> obj.name }                          // у каждого объекта типа JakeWhartonRepoInfo берем поле "name"
-                .filter { s -> !s.toUpperCase().startsWith(T) }    // фильтруем все пришедшие данные
-                .toList()                                         // приводим к листу
+                .flatMap { list -> Observable.from(list) }        
+                .map { obj -> obj.name }                          
+                .filter { s -> !s.toUpperCase().startsWith(T) }   
+                .toList()                                       
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ s -> activity.setData(s as ArrayList<String>) },
